@@ -19,10 +19,10 @@ Instalação
     git clone https://github.com/gelsonlmj/uello.git
     ```
 
-- Executar o composer
+2. Execute o comando abaixo para subir o projeto
 
     ```sh
-    composer install --optimize-autoloader --no-dev
+    ./bin/build-and-up.sh
     ```
 
 Projeto
@@ -42,7 +42,7 @@ Para ter acesso ao projeto basta acessar a seguinte url http://localhost:8080/
 Teste
 --------------
 
-- 1 Passo: Acesse o gerenciamento de clientes, cadastre clientes e depois vá para a importação de ceps.
+- 1 Passo: Acesse o gerenciamento de clientes, cadastre um ou mais clientes e depois vá para a importação de ceps.
 
 - 2 Passo: Na importação de ceps, selecione os clientes que deseja atualizar as taxas de fretes, e selecione o arquivo com as as taxas atualizadas.
 

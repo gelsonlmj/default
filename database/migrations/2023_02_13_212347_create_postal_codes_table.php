@@ -22,7 +22,7 @@ return new class extends Migration
             $table->decimal('to_weight', 13, 2);
             $table->decimal('cost', 13, 2);
             $table->timestamps();
-            $table->foreign('client_id')->references('id')->on('clients');
+            //$table->foreign('client_id')->references('id')->on('clients');
         });
     }
 
