@@ -11,18 +11,42 @@
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
         
         <style type="text/css">            
-            body{
+            body {
                 font-family: arial, helvetica, sans-serif;
                 font-size: 12px;
             }
 
-            .menu{
+            nav {
+                background: #FFFFFF;
+                color: #000000;
+            }
+
+            nav a {
+                color: #000000;
+            }
+
+            ul.pagination {
+                background: #FFFFFF;
+                float: right !important;
+                border: 0px;
+            }
+
+            ul.pagination li {
+                float: left;
+                width: 40px;
+            }
+
+            ul.pagination li.active {
+                background: #FFFFFF;
+            }
+
+            .menu {
                 list-style: none;
                 border: 0px solid #FFFFFF;
                 float: left;
             }
 
-            .menu li{
+            .menu li {
                 position: relative;
                 float: left;
                 border-right: 0px solid #FFFFFF;
@@ -79,51 +103,14 @@
                 padding: 0px 10px;
                 background-color: #ef5350;
             }
+            
         </style>
 
     </head>
     <body class="antialiased">
-
-        <div class="navbar-fixed">
-            <nav id="top-nav" class="black" role="navigation">
-                <div class="nav-wrapper container">
-                    <a id="logo-container" href="#" class="brand-logo"><span id="text">Logo</span></a>
-                    <!--ul class="menu right">
-                        <li>
-                            <a href="">Clientes</a>
-                        </li>
-                        <li>
-                            <a href="" >
-                                Importações
-                                <i class="material-icons right">arrow_drop_down</i>
-                            </a>
-                        </li>
-                    </ul-->
-
-                    <ul class="menu right">
-                        <li><a href="#">Clientes</a></li>
-                        <li>
-                            <a href="#">
-                                Importações
-                                <i class="material-icons right">arrow_drop_down</i>
-                            </a>
-                            <ul>
-                                <li><a href="#">Ceps</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
-            </nav>
-        </div>
-
-        <div id="services-dropdown" class="dropdown-content row">
-            <ul class="vertical-tabs col s4">
-                <li><a href="#!" style="font-weight: bolder" data-target="A">Ceps</a></li>
-            </ul>
-
-            <div class="vertical-tab-content col s8" style="padding: 0">
-            </div>
-        </div>
+        
+        @component('components.menu')
+        @endcomponent
 
         <div class="row container">
             @yield('content')
@@ -135,10 +122,8 @@
             (function($){
                 $(function(){
                     $('select').formSelect();
-
-                }); // end of document ready
-            })(jQuery); // end of jQuery name space
-  
+                });
+            })(jQuery);
         </script>      
     </body>
 </html>

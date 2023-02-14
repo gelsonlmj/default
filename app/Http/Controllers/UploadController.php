@@ -42,7 +42,7 @@ class UploadController extends Controller
         }
         $this->uploadService->save($request->client_id, file($request->file));
 
-        return redirect()->route('upload')
+        return redirect()->route('imports')
                 ->with('success','Importação agendada com sucesso');
     }
 }

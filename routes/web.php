@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ClientController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UploadController;
 use Illuminate\Support\Facades\Route;
 
@@ -15,15 +16,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-/*Route::get('/', function () {
-    return view('welcome');
-});*/
+Route::get('/', [HomeController::class, 'index'])->name('home');
 
-Route::get('/', [UploadController::class, 'index'])->name('upload');
-Route::post('/', [UploadController::class, 'save']);
+Route::resource('clients', ClientController::class, ['except' => ['show']]);
 
-//Route::get('/', [ClientController::class, 'index'])->name('index');
-//Route::get('/', [ClientController::class, 'create'])->name('create');
-//Route::post('/', [ClientController::class, 'store']);
-Route::put('/', [ClientController::class, 'edit'])->name('edit');
-Route::delete('/', [ClientController::class, 'destroy'])->name('destroy');
+Route::get('/imports', [UploadController::class, 'index'])->name('imports');
+Route::post('/imports', [UploadController::class, 'save']);

@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('fantasyName');
             $table->string('documentNumber', 14);
-            $table->boolean('active');
+            $table->boolean('active')->default('1');
             $table->timestamps();
         });
     }

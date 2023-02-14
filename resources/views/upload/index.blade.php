@@ -1,7 +1,14 @@
 @extends('layout')
 @section('title', 'Importação de Ceps')
 @section('content')
-    <form action="{{ route('upload') }}" method="POST" enctype="multipart/form-data">
+
+    @if ($message = Session::get('success'))
+        <div class="alert alert-success">
+            <p>{{ $message }}</p>
+        </div>
+    @endif
+
+    <form action="{{ route('imports') }}" method="POST" enctype="multipart/form-data">
         @csrf
 
         <div class="row">

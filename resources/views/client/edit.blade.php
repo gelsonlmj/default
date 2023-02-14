@@ -7,10 +7,6 @@
         <div class="pull-left">
             <h2>Editar Cliente</h2>
         </div>
-
-        <div class="pull-right">
-            <a class="btn btn-primary" href="{{ route('client.index') }}"> Back</a>
-        </div>
     </div>
 </div>
 
@@ -27,7 +23,7 @@
 
 @endif
 
-<form action="{{ route('client.update', $client->id) }}" method="POST">
+<form action="{{ route('clients.update', $client->id) }}" method="POST">
 
     @csrf
     @method('PUT')
@@ -64,6 +60,13 @@
                     <option value="0" >Inativo</option>
                 </select>
             </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 text-center right">
+            <a class="btn btn-primary grey lighten-1" href="{{route('clients.index')}}">Voltar</a>
+            <button type="submit" class="btn btn-primary green">Salvar</button>
         </div>
     </div>
 

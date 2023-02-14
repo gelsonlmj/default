@@ -23,7 +23,7 @@
 
 @endif
 
-<form action="#" method="POST">
+<form action="{{ route('clients.store') }}" method="POST">
 
     @csrf
 
@@ -64,7 +64,7 @@
     
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12 text-center right">
-            <a class="btn btn-primary grey lighten-1" href="#">Voltar</a>
+            <a class="btn btn-primary grey lighten-1" href="{{route('clients.index')}}">Voltar</a>
             <button type="submit" class="btn btn-primary green">Salvar</button>
         </div>
     </div>

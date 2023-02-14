@@ -7,8 +7,8 @@
             <div class="pull-left">
                 <h2>Clientes</h2>
             </div>
-            <div class="pull-right">
-                <a class="btn btn-success green right" href="{{ route('create') }}">Adicionar Cliente</a>
+            <div class="pull-right mb-2">
+                <a class="btn btn-success green right" href="{{ route('clients.create') }}">Adicionar Cliente</a>
             </div>
         </div>
     </div>
@@ -19,37 +19,46 @@
         </div>
     @endif
 
-    <table class="table table-bordered">
-        <tr>
-            <th>Nome</th>
-            <th>Nome Fantasia</th>
-            <th>CPF/CNPJ</th>
-            <th width="280px">Ação</th>
-        </tr>
+    <table class="table table-bordered data-table">
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Nome Fantasia</th>
+                <th>CPF/CNPJ</th>
+                <th>Ação</th>
+            </tr>
+        </thead>
 
-        @foreach ($clients as $client)
+        <tbody>
 
-        <tr>
-            <td>{{ $client->name }}</td>
-            <td>{{ $client->fantasyName }}</td>
-            <td>{{ $client->documentNumber }}</td>
-            <td>
+            @forelse($clients as $client)
+                <tr>
+                    <td>{{ $client->name }}</td>
+                    <td>{{ $client->fantasyName }}</td>
+                    <td>{{ $client->documentNumber }}</td>
+                    <td>
+                        <form action="{{ route('clients.destroy', $client->id) }}" method="POST">  
+                            @csrf
 
-                <form action="{{ route('destroy', $client->id) }}" method="POST">  
-                    @csrf
+                            <a class="btn btn-primary yellow" href="{{ route('clients.edit', $client->id) }}">Editar</a>
 
-                    <a class="btn btn-primary yellow accent-" href="{{ route('edit', $client->id) }}">Editar</a>
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger red lighten-1">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+            @empty
 
-                    @method('DELETE')
-                    <button type="submit" class="btn btn-danger red lighten-1">Delete</button>
-                </form>
-            </td>
-        </tr>
+                <tr>
+                    <td colspan="3">There are no users.</td>
+                </tr>
 
-        @endforeach
+            @endforelse
+
+        </tbody>
 
     </table>
 
-    {!! $clients->links() !!}
+    {!! $clients->withQueryString()->links('pagination::bootstrap-4') !!}
 
 @endsection

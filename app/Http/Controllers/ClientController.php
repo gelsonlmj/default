@@ -35,13 +35,8 @@ class ClientController extends Controller
     {
         $this->validator($request);
         $this->clientService->create($request->all());
-        return redirect()->route('index')
-                ->with('success','Cliente criado com sucesso.');
-    }
-
-    public function show(Client $client)
-    {
-        return view('client.show', compact('client'));
+        return redirect()->route('clients.index')
+                ->with('success', 'Cliente criado com sucesso.');
     }
 
     public function edit(Client $client)
@@ -54,15 +49,15 @@ class ClientController extends Controller
         $this->validator($request);
         $client->update($request->all());
 
-        return redirect()->route('client.index')
-                ->with('success','Cliente atualizado com sucesso');
+        return redirect()->route('clients.index')
+                ->with('success', 'Cliente atualizado com sucesso');
     }
 
     public function destroy(Client $client)
     {
         $client->delete();
-        return redirect()->route('index')
-                ->with('success','Cliente removido com sucesso');
+        return redirect()->route('clients.index')
+                ->with('success', 'Cliente removido com sucesso');
     }
 
     private function validator($parameters)
