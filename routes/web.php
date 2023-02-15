@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\StreamController;
 use App\Http\Controllers\UploadController;
 use Illuminate\Support\Facades\Route;
 
@@ -22,3 +23,5 @@ Route::resource('clients', ClientController::class, ['except' => ['show']]);
 
 Route::get('/imports', [UploadController::class, 'index'])->name('imports');
 Route::post('/imports', [UploadController::class, 'save']);
+
+Route::get('/stream', [StreamController::class, 'stream']);

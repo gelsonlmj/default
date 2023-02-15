@@ -12,7 +12,7 @@ class ClientController extends Controller
     /**
      * @var ClientService
      */
-    var $clientService;
+    public $clientService;
 
     public function __construct()
     {

@@ -2,11 +2,19 @@
 @section('title', 'Importação de Ceps')
 @section('content')
 
-    @if ($message = Session::get('success'))
-        <div class="alert alert-success">
-            <p>{{ $message }}</p>
+<div class="row">
+    <div class="col-lg-12 margin-tb">
+        <div class="pull-left">
+            <h2>Importação de Ceps</h2>
         </div>
-    @endif
+    </div>
+</div>
+
+@if ($message = Session::get('success'))
+    <div class="alert alert-success">
+        <p>{{ $message }}</p>
+    </div>
+@endif
 
     <form action="{{ route('imports') }}" method="POST" enctype="multipart/form-data">
         @csrf
@@ -28,7 +36,7 @@
                     <span>Selecionar</span>
                     <input type = "file" id="file" name="file" />
                 </div>
-                
+
                 <div class = "file-path-wrapper">
                     <input class = "file-path validate" type = "text" placeholder = "Arquivo" />
                 </div>
@@ -42,5 +50,5 @@
             </button>
         </div>
 
-    </form>  
+    </form>
 @endsection

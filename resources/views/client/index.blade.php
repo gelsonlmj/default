@@ -37,7 +37,7 @@
                     <td>{{ $client->fantasyName }}</td>
                     <td>{{ $client->documentNumber }}</td>
                     <td>
-                        <form action="{{ route('clients.destroy', $client->id) }}" method="POST">  
+                        <form action="{{ route('clients.destroy', $client->id) }}" method="POST">
                             @csrf
 
                             <a class="btn btn-primary yellow" href="{{ route('clients.edit', $client->id) }}">Editar</a>
@@ -50,7 +50,7 @@
             @empty
 
                 <tr>
-                    <td colspan="3">There are no users.</td>
+                    <td colspan="4" class="center">Nenhum cliente cadastrado.</td>
                 </tr>
 
             @endforelse

@@ -12,14 +12,14 @@
 
 @if ($errors->any())
 
-<div class="alert alert-danger">
-    <strong>Erro!</strong>Verifique os campos abaixo.<br><br>
-    <ul>
-        @foreach ($errors->all() as $error)
-            <li>{{ $error }}</li>
-        @endforeach
-    </ul>
-</div>
+    <div class="alert alert-danger">
+        <strong>Erro!</strong>Verifique os campos abaixo.<br><br>
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
 
 @endif
 
@@ -61,7 +61,7 @@
             </div>
         </div>
     </div>
-    
+
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12 text-center right">
             <a class="btn btn-primary grey lighten-1" href="{{route('clients.index')}}">Voltar</a>

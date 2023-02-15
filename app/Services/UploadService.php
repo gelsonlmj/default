@@ -2,42 +2,62 @@
 
 namespace App\Services;
 
-use App\Jobs\UploadCsvProcess;
-use Illuminate\Support\Facades\Bus;
+use App\Repository\Import\ImportRepository;
+use App\Repository\PostalCode\PostalCodeRepository;
 
 class UploadService
 {
 
-    CONST LENGTH = 1000;
+    /**
+     * @var ImportRepository
+     */
+    var $importRepository;
+
+    /**
+     * @var PostalCodeRepository
+     */
+    var $postalCodeRepository;
 
     public function __construct()
     {
+        $this->importRepository = new ImportRepository();
+        $this->postalCodeRepository = new PostalCodeRepository();
     }
 
     public function save($clients, $file)
     {
-        $chunks = array_chunk($file, self::LENGTH);
         foreach ($clients as $clientId) {
-            $this->processClientData($clientId, $chunks);
+            $fileName = strtotime('now').'.csv';
+
+            if ($file->storeAs('imports', $fileName)) {
+                $this->importRepository->create([
+                    'client_id' => $clientId,
+                    'filename' => $fileName,
+                    'processed' => 0
+                ]);
+            }
         }
         return true;
     }
 
-    private function processClientData($clientId, $chunks)
+    private function treatData($data)
     {
-        $header = [];
+        $data['from_postcode'] = preg_replace('/[^0-9]/', '', $data['from_postcode']);
+        $data['to_postcode'] = preg_replace('/[^0-9]/', '', $data['to_postcode']);
 
-        $batch = Bus::batch([])->dispatch();
-    
-        foreach ($chunks as $index => $chunk) {
-            $data = array_map(function($data){return str_getcsv($data, ";");}, $chunk);
+        $data['from_weight'] = Util::convertDecimalToDatabase($data['from_weight']);
+        $data['to_weight'] = Util::convertDecimalToDatabase($data['to_weight']);
+        $data['cost'] = Util::convertDecimalToDatabase($data['cost']);
 
-            if ($index == 0) {
-                $header = $data[0];
-                unset($data[0]);
-            }
+        return $data;
+    }
 
-            $batch->add(new UploadCsvProcess($clientId, $header, $data));
+    public function import($clientId, $header, $data)
+    {
+        foreach ($data as $data) {
+            $postalCode = array_combine($header, $data);
+            $postalCode['client_id'] = $clientId;
+            $this->postalCodeRepository->createOrUpdate($this->treatData($postalCode));
         }
     }
 }

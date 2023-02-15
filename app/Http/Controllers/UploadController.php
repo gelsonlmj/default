@@ -18,13 +18,13 @@ class UploadController extends Controller
      * @var ClientService
      */
     var $clientService;
- 
+
     public function __construct()
     {
         $this->uploadService = new UploadService();
         $this->clientService = new ClientService();
     }
- 
+
     public function index()
     {
         return view('upload/index', ['clients' => $this->clientService->getIdAndName()]);
@@ -40,7 +40,7 @@ class UploadController extends Controller
         if (!$request->has('file')) {
             return 'Arquivo não enviado';
         }
-        $this->uploadService->save($request->client_id, file($request->file));
+        $this->uploadService->save($request->client_id, $request->file);
 
         return redirect()->route('imports')
                 ->with('success','Importação agendada com sucesso');
