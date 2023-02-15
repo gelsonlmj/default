@@ -17,6 +17,13 @@ if ! docker-compose up -d --force-recreate --build --remove-orphans; then
     exit 1
 fi
 
+printf "Limpando a configuração ${br}";
+docker-compose exec uello-app php artisan config:clear;
+
+printf "Fazendo cache da configuração ${br}";
+docker-compose exec uello-app php artisan config:cache;
+
+
 printf "Instalando o compose${br}";
 if ! docker-compose exec uello-app composer install --optimize-autoloader --no-dev; then
     printf "${fail}Erro ao executar o compose${fail}${br}";
@@ -42,11 +49,5 @@ if ! docker-compose exec uello-app php artisan migrate; then
     printf "${fail}Erro ao executar as migrations${fail}${br}";
     exit 1
 fi
-
-printf "Limpando a configuração ${br}";
-docker-compose exec uello-app php artisan config:clear;
-
-printf "Fazendo cache da configuração ${br}";
-docker-compose exec uello-app php artisan config:cache;
 
 printf "Finalizando processo de deploy ${success}${br}";
