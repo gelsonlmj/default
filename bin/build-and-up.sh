@@ -32,9 +32,6 @@ if ! docker-compose exec uello-app php artisan app_key:exists; then
     fi
 fi
 
-printf "Esperando 10 segundos para subir o banco ${br}";
-sleep 10
-
 printf "Rodando as migrations ${br}";
 if ! docker-compose exec uello-app php artisan migrate; then
     printf "${fail}Erro ao executar as migrations${fail}${br}";

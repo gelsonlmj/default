@@ -8,6 +8,8 @@ services:
     image: wyveo/nginx-php-fpm:latest
     ports:
       - "8080:80"
+    depends_on:
+      - uello-mysql-app
     volumes:
       - ./:/usr/share/nginx
       - ./infra/nginx:/etc/nginx/conf.d/
@@ -16,17 +18,15 @@ services:
 
   uello-mysql-app:
     container_name: uello-mysql-app
-    hostname: uello-mysql-app
-    image: mysql:5.7.22
+    image: mysql:5.7.37
     ports:
       - "3306:3306"
     volumes:
-      - .docker/dbdata:/var/lib/mysql
+       - ./docker/dbdata:/docker-entrypoint-initdb.d
+       - ./docker/dbdata:/var/lib/mysql
     environment:
-      MYSQL_DATABASE: uello
-      MYSQL_ROOT_PASSWORD: teste
-      MYSQL_USER: uello
-      MYSQL_PASSWORD: uello
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+      MYSQL_DATABASE: ${DB_DATABASE}
     networks:
       - app-network
 
