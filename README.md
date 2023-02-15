@@ -22,6 +22,7 @@ Instalação
 2. Execute o comando abaixo para subir o projeto
 
     ```sh
+    cd uello
     ./bin/build-and-up.sh
     ```
 

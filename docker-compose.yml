@@ -1,25 +1,32 @@
 version: '3'
 
 services:
-  app:
-    build: .
-    ports: 
+  uello-app:
+    container_name: uello-app
+    hostname: uello-app
+    working_dir: /usr/share/nginx
+    image: wyveo/nginx-php-fpm:latest
+    ports:
       - "8080:80"
     volumes:
       - ./:/usr/share/nginx
       - ./infra/nginx:/etc/nginx/conf.d/
     networks:
       - app-network
-  
-  mysql-app:
+
+  uello-mysql-app:
+    container_name: uello-mysql-app
+    hostname: uello-mysql-app
     image: mysql:5.7.22
     ports:
       - "3306:3306"
     volumes:
       - .docker/dbdata:/var/lib/mysql
     environment:
-      MYSQL_DATABASE: laravel
-      MYSQL_ROOT_PASSWORD: laravel
+      MYSQL_DATABASE: uello
+      MYSQL_ROOT_PASSWORD: teste
+      MYSQL_USER: uello
+      MYSQL_PASSWORD: uello
     networks:
       - app-network
 
