@@ -66,7 +66,7 @@ class StreamController extends Controller
             $batch->add(new UploadCsvProcess($import->client_id, $header, $data));
 
         }
-        $this->importRepository->setProcessed();
+        $this->importRepository->setProcessed($import);
         return true;
     }
 
