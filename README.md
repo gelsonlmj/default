@@ -24,6 +24,9 @@ Instalação
     ```sh
     cd uello
     ./bin/build-and-up.sh
+
+    docker exec -it uello-app bash
+    php artisan migrate
     ```
 
 Projeto
