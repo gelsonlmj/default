@@ -32,6 +32,11 @@ if ! docker-compose exec uello-app php artisan app_key:exists; then
     fi
 fi
 
+sudo chown 1000:1000 docker
+sudo chown 1000:1000 vendor
+chmod +x database/migrations/
+sudo chmod 777 -R storage/
+
 printf "Rodando as migrations ${br}";
 if ! docker-compose exec uello-app php artisan migrate; then
     printf "${fail}Erro ao executar as migrations${fail}${br}";
