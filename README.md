@@ -45,14 +45,17 @@ Para ter acesso ao projeto basta acessar a seguinte url http://localhost:8080/
 
     No menu "Importações > Ceps", podemos fazer a atualização das taxas de fretes para os clientes.
 
+- Stream
+
+    No menu "Importações > Rodar", acesando esse menu podemos fazer de fato a importação das taxas de fretes para os clientes.
 
 Teste
 --------------
 
 - 1 Passo: Acesse o gerenciamento de clientes, cadastre um ou mais clientes e depois vá para a importação de ceps.
 
-- 2 Passo: Na importação de ceps, selecione os clientes que deseja atualizar as taxas de fretes, e selecione o arquivo com as as taxas atualizadas.
+- 2 Passo: Na importação de ceps, selecione os clientes que deseja atualizar as taxas de fretes,  selecione o arquivo com as as taxas atualizadas e clique no botão enviar.
 
-- 3 Passo: Acesse a url http://localhost:8080/stream para disparar a importação dos ceps.
+- 3 Passo: Acesse o menu "Importações > Rodar" para disparar a importação dos ceps.
 
 - 4 Passo: Abra seu software de banco de dados e acesse o banco de dados da aplicação chamado de laravel, após selecionado o banco, execute a query "SELECT * FROM postal_codes" para verificar se a importação está importando as taxas de fretes corretamente. 
