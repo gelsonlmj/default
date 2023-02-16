@@ -24,7 +24,10 @@ Instalação
     ```sh
     cd uello
     ./bin/build-and-up.sh
+    ```
 
+3. Execute o comando abaixo para rodar as migrations do sistema
+    ```
     docker exec -it uello-app bash
     php artisan migrate
     ```
@@ -50,18 +53,6 @@ Teste
 
 - 2 Passo: Na importação de ceps, selecione os clientes que deseja atualizar as taxas de fretes, e selecione o arquivo com as as taxas atualizadas.
 
-- 3 Passo: Abra o terminal e digite o comando abaixo.
-    ```
-    docker exec -it uello-app-1 bash
-    ```
-- 4 Passo: Dentro do container digite o comando abaixo.
-    ```
-    cd /usr/share/nginx
-    ```
+- 3 Passo: Acesse a url http://localhost:8080/stream para disparar a importação dos ceps.
 
-- 5 Passo: Após acessar a pasta nginx, digite o comando abaixo.
-    ```
-    php artisan queue:work
-    ```
-
-- 6 Passo: Abra seu software de banco de dados e acesse o banco de dados da aplicação chamado de laravel, após selecionado o banco, execute a query "SELECT * FROM postal_codes" para verificar se a importação está importando as taxas de fretes corretamente 
+- 4 Passo: Abra seu software de banco de dados e acesse o banco de dados da aplicação chamado de laravel, após selecionado o banco, execute a query "SELECT * FROM postal_codes" para verificar se a importação está importando as taxas de fretes corretamente. 
