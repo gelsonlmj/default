@@ -13,6 +13,7 @@
                     </a>
                     <ul>
                         <li><a href="{{ route('imports') }}">Ceps</a></li>
+                        <li><a href="{{ route('stream') }}">Rodar</a></li>
                     </ul>
                 </li>
             </ul>

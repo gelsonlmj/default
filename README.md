@@ -54,7 +54,7 @@ Teste
 
 - 1 Passo: Acesse o gerenciamento de clientes, cadastre um ou mais clientes e depois vá para a importação de ceps.
 
-- 2 Passo: Na importação de ceps, selecione os clientes que deseja atualizar as taxas de fretes,  selecione o arquivo com as as taxas atualizadas e clique no botão enviar.
+- 2 Passo: Na importação de ceps, selecione os clientes que deseja atualizar as taxas de fretes,  selecione o arquivo com as as taxas atualizadas e clique no botão salvar.
 
 - 3 Passo: Acesse o menu "Importações > Rodar" para disparar a importação dos ceps.
 
