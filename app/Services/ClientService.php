@@ -32,4 +32,14 @@ class ClientService
         return $this->clientRepository->create($parameters);
     }
 
+    public function searchByFilters($filters)
+    {
+        return $this->clientRepository->searchByFilters($filters);
+    }
+
+    public function delete($id)
+    {
+        return $this->clientRepository->delete($id);
+    }
+
 }

@@ -1,23 +1,23 @@
 version: '3'
 
 services:
-  uello-app:
-    container_name: uello-app
-    hostname: uello-app
+  default-app:
+    container_name: default-app
+    hostname: default-app
     working_dir: /usr/share/nginx
     image: wyveo/nginx-php-fpm:latest
     ports:
       - "8080:80"
     depends_on:
-      - uello-mysql-app
+      - default-mysql-app
     volumes:
       - ./:/usr/share/nginx
       - ./infra/nginx:/etc/nginx/conf.d/
     networks:
       - app-network
 
-  uello-mysql-app:
-    container_name: uello-mysql-app
+  default-mysql-app:
+    container_name: default-mysql-app
     image: mysql:5.7.37
     ports:
       - "3306:3306"

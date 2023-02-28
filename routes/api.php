@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\ClientController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -14,6 +15,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+/*Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
+});*/
+
+Route::prefix('clients')->group(function () {
+    Route::get('/', [ClientController::class, 'list']);
+    Route::post('/create', [ClientController::class, 'create']);
+    Route::get('/searchByFilters', [ClientController::class, 'searchByFilters']);
+    Route::delete('/delete/{id}', [ClientController::class, 'delete']);
 });

@@ -18,21 +18,21 @@ if ! docker-compose up -d --force-recreate --build --remove-orphans; then
 fi
 
 printf "Instalando o compose${br}";
-if ! docker-compose exec uello-app composer install --optimize-autoloader --no-dev; then
+if ! docker-compose exec default-app composer install --optimize-autoloader --no-dev; then
     printf "${fail}Erro ao executar o compose${fail}${br}";
     exit 1
 fi
 
 printf "Limpando a configuração ${br}";
-docker-compose exec uello-app php artisan config:clear;
+docker-compose exec default-app php artisan config:clear;
 
 printf "Fazendo cache da configuração ${br}";
-docker-compose exec uello-app php artisan config:cache;
+docker-compose exec default-app php artisan config:cache;
 
 printf "Verifica se existe chave do projeto ${br}";
-if ! docker-compose exec uello-app php artisan app_key:exists; then
+if ! docker-compose exec default-app php artisan app_key:exists; then
     printf "Gerando chave ${br}";
-    if ! docker-compose exec uello-app php artisan key:generate --ansi; then
+    if ! docker-compose exec default-app php artisan key:generate --ansi; then
         printf "Não foi possivel gerar a chave ${fail}${br}";
         exit 1
     fi

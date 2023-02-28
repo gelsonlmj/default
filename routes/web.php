@@ -20,8 +20,3 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::resource('clients', ClientController::class, ['except' => ['show']]);
-
-Route::get('/imports', [UploadController::class, 'index'])->name('imports');
-Route::post('/imports', [UploadController::class, 'save']);
-
-Route::get('/stream', [StreamController::class, 'stream'])->name('stream');

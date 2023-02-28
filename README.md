@@ -1,4 +1,4 @@
-Uello
+default
 ===================================
 
 Esse projeto disponibiliza uma funcionalidade de importações de taxas de fretes de n clientes, no projeto é possível gerenciar clientes e importar um arquivo com as taxas atualizadas para 1 ou mais clientes.
@@ -16,19 +16,19 @@ Instalação
 1. Clonar o repositório:
 
     ```sh
-    git clone https://github.com/gelsonlmj/uello.git
+    git clone https://github.com/gelsonlmj/default.git
     ```
 
 2. Execute o comando abaixo para subir o projeto
 
     ```sh
-    cd uello
+    cd default
     ./bin/build-and-up.sh
     ```
 
 3. Execute o comando abaixo para rodar as migrations do sistema
     ```
-    docker exec -it uello-app bash
+    docker exec -it default-app bash
     php artisan migrate
     ```
 
